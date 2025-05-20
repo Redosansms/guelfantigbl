@@ -3,158 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manifeste Anti-Gibelin nous somme guelfe parti d'extrem droite</title>
+    <title>Antoine Gibelin - L'Empereur Visionnaire</title>
     <style>
-        /* CSS intégré */
-        body {
-            font-family: 'Times New Roman', serif;
-            background-color: #f0e6d2;
-            color: #321;
-            margin: 0;
-            padding: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23d4c9a8" d="M0 0h100v100H0z"/><path fill="none" stroke="%23b8a47e" stroke-width="2" d="M0 0l100 100M100 0L0 100"/></svg>');
+        :root {
+            --primary: #1a1e24;
+            --secondary: #c9a66b;
+            --accent: #8c1515;
+            --text: #e8e6e3;
+            --glow: rgba(201, 166, 107, 0.6);
         }
         
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 3px double #654321;
-            background-color: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        @font-face {
+            font-family: 'Imperial';
+            src: url('data:font/woff2;base64,d09GMgABAAAA...') format('woff2');
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--primary);
+            color: var(--text);
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(201, 166, 107, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(140, 21, 21, 0.05) 0%, transparent 20%);
+        }
+        
+        /* Effet de parchemin holographique */
+        .hologram {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                linear-gradient(135deg, transparent 48%, var(--glow) 49%, var(--glow) 51%, transparent 52%),
+                linear-gradient(45deg, transparent 48%, var(--glow) 49%, var(--glow) 51%, transparent 52%);
+            background-size: 3em 3em;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: -1;
+            animation: hologramMove 40s infinite linear;
+        }
+        
+        @keyframes hologramMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100em 100em; }
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .title-container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
         }
         
         h1 {
-            color: #8b0000;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 1px 1px 2px #ccc;
-            border-bottom: 2px solid #8b0000;
-            padding-bottom: 10px;
+            font-family: 'Imperial', serif;
+            font-size: 5rem;
+            margin: 0;
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--glow);
+            letter-spacing: 0.3rem;
+            position: relative;
+            animation: textGlow 4s infinite alternate;
         }
         
-        .coat-of-arms {
-            display: block;
-            width: 150px;
-            margin: 20px auto;
-            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px var(--glow); }
+            100% { text-shadow: 0 0 20px var(--glow), 0 0 30px rgba(201, 166, 107, 0.4); }
         }
         
-        button {
-            background-color: #8b0000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-family: inherit;
-            font-size: 1em;
+        .subtitle {
+            font-style: italic;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            opacity: 0.8;
+            position: relative;
+        }
+        
+        /* Effet de sceau impérial rotatif */
+        .imperial-seal {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: 
+                radial-gradient(circle, transparent 60%, var(--primary) 60.5%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23c9a66b" stroke-width="0.5" d="M50 0a50 50 0 1 0 0 100 50 50 0 0 1 0-100zm0 10a40 40 0 1 0 0 80 40 40 0 0 1 0-80zm0 10a30 30 0 1 0 0 60 30 30 0 0 1 0-60zm0 10a20 20 0 1 0 0 40 20 20 0 0 1 0-40zm0 10a10 10 0 1 0 0 20 10 10 0 0 1 0-20z"/></svg>');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            animation: rotateSeal 120s linear infinite;
+            z-index: 1;
+        }
+        
+        @keyframes rotateSeal {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Navigation futuriste médiévale */
+        nav {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1.5rem;
+            z-index: 100;
+        }
+        
+        nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-family: 'Imperial', serif;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--secondary);
+            border-radius: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.3), transparent);
+            transition: all 0.6s;
+        }
+        
+        nav a:hover {
+            background: rgba(201, 166, 107, 0.1);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        nav a:hover::before {
+            left: 100%;
+        }
+        
+        /* Sections avec effet de défilement parallaxe */
+        section {
+            min-height: 100vh;
+            padding: 5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .section-title {
+            font-family: 'Imperial', serif;
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+        }
+        
+        /* Effet de révélation de texte */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+        
+        .reveal-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Carte interactive */
+        .interactive-map {
+            width: 100%;
+            height: 500px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><rect width="800" height="500" fill="%231a1e24"/><path fill="none" stroke="%23c9a66b" stroke-width="2" d="M100 100h600v300H100z"/><path fill="%238c1515" d="M200 200l100-50 100 50 100-50 100 50 100-50" opacity="0.7"/></svg>');
+            position: relative;
+            margin: 3rem 0;
+            border: 1px solid var(--secondary);
+            box-shadow: 0 0 30px rgba(201, 166, 107, 0.1);
+        }
+        
+        .map-marker {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
             cursor: pointer;
             transition: all 0.3s;
-            margin: 10px 0;
         }
         
-        button:hover {
-            background-color: #a52a2a;
-            transform: scale(1.05);
+        .map-marker::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: all 0.3s;
         }
         
-        .hidden {
-            display: none;
+        .map-marker:hover {
+            transform: translate(-50%, -50%) scale(1.5);
         }
         
-        .quote {
-            font-style: italic;
-            border-left: 3px solid #8b0000;
-            padding-left: 15px;
-            margin: 20px 0;
+        .map-marker:hover::after {
+            opacity: 0.3;
+            transform: translate(-50%, -50%) scale(1.8);
         }
         
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 0.9em;
-            color: #666;
+        /* Timeline holographique */
+        .timeline {
+            position: relative;
+            padding-left: 100px;
+            margin: 5rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--secondary), transparent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 50px;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            left: -25px;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Imperial', serif;
+            color: var(--secondary);
+            box-shadow: 0 0 15px var(--glow);
+        }
+        
+        /* Effet de vieillissement du texte */
+        .aged-text {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .aged-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="%23c9a66b" stroke-width="0.3" stroke-opacity="0.1" d="M0 0l100 100M100 0L0 100"/></svg>');
+            mix-blend-mode: multiply;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- SVG intégré pour les armoiries -->
-        <svg class="coat-of-arms" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
-            <rect x="10" y="10" width="80" height="100" fill="#fff" stroke="#8b0000" stroke-width="2"/>
-            <path d="M10 60 L50 10 L90 60 L50 110 Z" fill="#8b0000"/>
-            <circle cx="50" cy="60" r="20" fill="#fff"/>
-            <path d="M40 50 L60 50 M50 40 L50 60" stroke="#8b0000" stroke-width="3"/>
-        </svg>
-        
-        <h1>À Bas les Gibelins!</h1>
-        
-        <p>Les Gibelins, partisans de l'empereur, menacent nos libertés communales et l'autorité légitime du Pape. Ce site est dédié à la résistance contre leur influence néfaste .</p>
-        
-        <div class="quote">
-            "Ni empereur, ni tyran - la commune libre sera notre refuge! a bas les Gibelins!"
+    <div class="hologram"></div>
+    
+    <header>
+        <div class="imperial-seal"></div>
+        <div class="title-container">
+            <h1>ANTOINE GIBELIN</h1>
+            <div class="subtitle">L'Empereur qui façonna le destin de l'Europe</div>
+        </div>
+    </header>
+    
+    <nav>
+        <a href="#biographie">Biographie</a>
+        <a href="#empire">L'Empire</a>
+        <a href="#heritage">Héritage</a>
+        <a href="#archives">Archives</a>
+    </nav>
+    
+    <section id="biographie">
+        <h2 class="section-title aged-text">Biographie</h2>
+        <div class="reveal-text">
+            <p>Né en 1215 dans le château familial des Gibelin, Antoine montra dès son plus jeune âge des dispositions exceptionnelles pour le leadership et la stratégie. Son éducation, confiée aux meilleurs précepteurs du Saint-Empire, fit de lui un polyglotte accompli et un fin connaisseur des arts.</p>
+            
+            <p>Son accession au trône en 1256 marqua un tournant dans l'histoire européenne. Contrairement à ses prédécesseurs, Gibelin comprit que la puissance impériale devait s'appuyer autant sur la culture que sur les armes.</p>
         </div>
         
-        <button id="toggleButton">Voir les Crimes des Gibelins</button>
-        
-        <div id="crimesList" class="hidden">
-            <h3>Crimes des Gibelins:</h3>
-            <ul>
-                <li>Usurpation du pouvoir légitime</li>
-                <li>Oppression des villes libres</li>
-                <li>Alliance avec les forces impies</li>
-                <li>Persécution des Guelfes</li>
-                <li>Trahison de la Sainte Église</li>
-            </ul>
+        <div class="interactive-map">
+            <div class="map-marker" style="top: 30%; left: 25%;" data-year="1215"></div>
+            <div class="map-marker" style="top: 45%; left: 50%;" data-year="1256"></div>
+            <div class="map-marker" style="top: 60%; left: 75%;" data-year="1289"></div>
         </div>
-        
-        <button id="pledgeButton">Prêter Serment (irreversible)</button>
-        
-        <div id="pledgeForm" class="hidden">
-            <h3>Je jure fidélité à la cause Guelfe anti gibelaine:</h3>
-            <input type="text" id="name" placeholder="Votre nom" style="padding: 8px; width: 100%; margin: 10px 0; border: 1px solid #654321;">
-            <button id="submitPledge">Soumettre</button>
+    </section>
+    
+    <section id="empire" style="background: rgba(26, 30, 36, 0.7);">
+        <h2 class="section-title aged-text">L'Empire Gibelin</h2>
+        <div class="reveal-text">
+            <p>Sous le règne d'Antoine Gibelin, l'Empire atteignit son apogée territorial et culturel. Il établit un système administratif innovant qui influença les monarchies européennes pour les siècles à venir.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1258</div>
+                    <p>Réforme du système judiciaire impérial, établissant les bases du droit moderne.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1265</div>
+                    <p>Création de la première bibliothèque impériale ouverte aux érudits de toute l'Europe.</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1272</div>
+                    <p>Signature du Concordat de Vienne, réconciliant temporairement l'Empire et la Papauté.</p>
+                </div>
+            </div>
         </div>
-        
-        <div id="result"></div>
-        
-        <footer>
-            Société Secrète des Guelfes pretre abbatu par le chaf delecourt a la tete du parti d'extrem gauche gibelin - © 1267 (Anno Domini)
-        </footer>
-    </div>
-
+    </section>
+    
     <script>
-        // JavaScript intégré
-        document.getElementById('toggleButton').addEventListener('click', function() {
-            const crimesList = document.getElementById('crimesList');
-            crimesList.classList.toggle('hidden');
-            this.textContent = crimesList.classList.contains('hidden') ? 
-                'Voir les Crimes des Gibelins' : 'Cacher les Crimes';
+        // Effets de révélation au défilement
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.reveal-text').forEach(el => {
+            observer.observe(el);
         });
         
-        document.getElementById('pledgeButton').addEventListener('click', function() {
-            document.getElementById('pledgeForm').classList.toggle('hidden');
+        // Interaction avec la carte
+        document.querySelectorAll('.map-marker').forEach(marker => {
+            marker.addEventListener('click', function() {
+                const year = this.getAttribute('data-year');
+                alert(`Événement clé de ${year}: ${getEventDescription(year)}`);
+            });
         });
         
-        document.getElementById('submitPledge').addEventListener('click', function() {
-            const name = document.getElementById('name').value.trim();
-            if(name) {
-                document.getElementById('result').innerHTML = `
-                    <p style="color: #8b0000; font-weight: bold;">${name}, votre serment a été enregistré. Que Dieu protège les Guelfes!</p>
-                `;
-                document.getElementById('pledgeForm').classList.add('hidden');
-                document.getElementById('name').value = '';
-            } else {
-                alert('Entrez votre nom pour prêter serment!');
-            }
-        });
+        function getEventDescription(year) {
+            const events = {
+                '1215': 'Naissance d\'Antoine Gibelin dans le château familial',
+                '1256': 'Couronnement comme Empereur du Saint-Empire',
+                '1289': 'Mort d\'Antoine Gibelin à Innsbruck'
+            };
+            return events[year] || 'Événement important de cette période';
+        }
         
-        // Effet spécial pour le titre
-        const title = document.querySelector('h1');
-        title.addEventListener('mouseover', function() {
-            this.style.textShadow = '2px 2px 4px #8b0000';
-        });
-        title.addEventListener('mouseout', function() {
-            this.style.textShadow = '1px 1px 2px #ccc';
+        // Effet de particules pour le sceau
+        document.addEventListener('mousemove', (e) => {
+            const seal = document.querySelector('.imperial-seal');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            seal.style.transform = `rotate(${x * 360}deg) translate(${x * 20}px, ${y * 20}px)`;
         });
     </script>
 </body>
