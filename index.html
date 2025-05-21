@@ -3,51 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antoine Gibelin - L'Empereur Visionnaire</title>
+    <title>Antoine Jewbuzz & Mazeltov</title>
     <style>
         :root {
-            --primary: #1a1e24;
-            --secondary: #c9a66b;
-            --accent: #8c1515;
-            --text: #e8e6e3;
-            --glow: rgba(201, 166, 107, 0.6);
+            --gold: #FFD700;
+            --blue: #0038A8;
+            --burgundy: #800020;
+            --dark: #0A0A0A;
+            --light: #F5F5F5;
         }
         
         @font-face {
-            font-family: 'Imperial';
-            src: url('data:font/woff2;base64,d09GMgABAAAA...') format('woff2');
+            font-family: 'Hebrew';
+            src: url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700&display=swap');
         }
         
         body {
             margin: 0;
             padding: 0;
-            background: var(--primary);
-            color: var(--text);
-            font-family: 'Georgia', serif;
+            font-family: 'Frank Ruhl Libre', serif;
+            background-color: var(--dark);
+            color: var(--light);
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(201, 166, 107, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(140, 21, 21, 0.05) 0%, transparent 20%);
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%230038A8" opacity="0.1" d="M50 0L100 50L50 100L0 50Z"/></svg>'),
+                linear-gradient(to bottom, var(--dark), #111);
+            background-size: 150px 150px, cover;
         }
         
-        /* Effet de parchemin holographique */
-        .hologram {
+        /* Effet de lumières de Hanoucca */
+        .hanukkah-lights {
             position: fixed;
-            width: 100vw;
-            height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: 
-                linear-gradient(135deg, transparent 48%, var(--glow) 49%, var(--glow) 51%, transparent 52%),
-                linear-gradient(45deg, transparent 48%, var(--glow) 49%, var(--glow) 51%, transparent 52%);
-            background-size: 3em 3em;
-            opacity: 0.03;
+                radial-gradient(circle at 20% 30%, rgba(255,215,0,0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(255,215,0,0.15) 0%, transparent 25%);
             pointer-events: none;
             z-index: -1;
-            animation: hologramMove 40s infinite linear;
+            animation: lightsFlicker 5s infinite alternate;
         }
         
-        @keyframes hologramMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 100em 100em; }
+        @keyframes lightsFlicker {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        
+        /* Menorah animée */
+        .menorah {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><path d="M150 200L140 100H160L150 200ZM50 100H250M75 80H100M125 60H150M175 40H200M225 20H250" stroke="%23FFD700" stroke-width="3" fill="none"/><circle cx="50" cy="100" r="5" fill="%23FFD700"/><circle cx="75" cy="80" r="5" fill="%23FFD700"/><circle cx="100" cy="100" r="5" fill="%23FFD700"/><circle cx="125" cy="60" r="5" fill="%23FFD700"/><circle cx="150" cy="100" r="5" fill="%23FFD700"/><circle cx="175" cy="40" r="5" fill="%23FFD700"/><circle cx="200" cy="100" r="5" fill="%23FFD700"/><circle cx="225" cy="20" r="5" fill="%23FFD700"/><circle cx="250" cy="100" r="5" fill="%23FFD700"/></svg>') no-repeat center;
+            z-index: -1;
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.7));
         }
         
         header {
@@ -56,120 +70,104 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
+            padding: 0 20px;
         }
         
-        .title-container {
+        .logo-container {
             position: relative;
             z-index: 2;
-            text-align: center;
-            padding: 2rem;
         }
         
-        h1 {
-            font-family: 'Imperial', serif;
+        .logo {
+            font-family: 'Hebrew', serif;
             font-size: 5rem;
+            color: var(--gold);
+            text-shadow: 0 0 15px var(--gold);
             margin: 0;
-            color: var(--secondary);
-            text-shadow: 0 0 10px var(--glow);
-            letter-spacing: 0.3rem;
             position: relative;
-            animation: textGlow 4s infinite alternate;
+            letter-spacing: 3px;
         }
         
-        @keyframes textGlow {
-            0% { text-shadow: 0 0 10px var(--glow); }
-            100% { text-shadow: 0 0 20px var(--glow), 0 0 30px rgba(201, 166, 107, 0.4); }
-        }
-        
-        .subtitle {
-            font-style: italic;
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            opacity: 0.8;
-            position: relative;
-        }
-        
-        /* Effet de sceau impérial rotatif */
-        .imperial-seal {
+        .logo::before, .logo::after {
+            content: '✡';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: 
-                radial-gradient(circle, transparent 60%, var(--primary) 60.5%),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23c9a66b" stroke-width="0.5" d="M50 0a50 50 0 1 0 0 100 50 50 0 0 1 0-100zm0 10a40 40 0 1 0 0 80 40 40 0 0 1 0-80zm0 10a30 30 0 1 0 0 60 30 30 0 0 1 0-60zm0 10a20 20 0 1 0 0 40 20 20 0 0 1 0-40zm0 10a10 10 0 1 0 0 20 10 10 0 0 1 0-20z"/></svg>');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            animation: rotateSeal 120s linear infinite;
-            z-index: 1;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite alternate;
         }
         
-        @keyframes rotateSeal {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .logo::before {
+            left: -50px;
+            top: -20px;
         }
         
-        /* Navigation futuriste médiévale */
+        .logo::after {
+            right: -50px;
+            bottom: -20px;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-15px); }
+        }
+        
+        .hebrew {
+            font-family: 'Frank Ruhl Libre', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-top: 1rem;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        /* Navigation */
         nav {
             position: fixed;
-            bottom: 2rem;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             z-index: 100;
         }
         
         nav a {
-            color: var(--secondary);
+            color: var(--light);
             text-decoration: none;
-            font-family: 'Imperial', serif;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--secondary);
-            border-radius: 2rem;
+            font-size: 1.2rem;
+            padding: 0.8rem 1.8rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            background: rgba(0,56,168,0.3);
+            backdrop-filter: blur(5px);
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        nav a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(201, 166, 107, 0.3), transparent);
-            transition: all 0.6s;
         }
         
         nav a:hover {
-            background: rgba(201, 166, 107, 0.1);
-            box-shadow: 0 0 15px var(--glow);
+            background: var(--gold);
+            color: var(--dark);
+            box-shadow: 0 0 20px var(--gold);
         }
         
-        nav a:hover::before {
-            left: 100%;
-        }
-        
-        /* Sections avec effet de défilement parallaxe */
+        /* Sections */
         section {
             min-height: 100vh;
-            padding: 5rem;
+            padding: 100px 50px;
             position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
         }
         
         .section-title {
-            font-family: 'Imperial', serif;
+            font-family: 'Hebrew', serif;
             font-size: 3rem;
-            color: var(--secondary);
-            margin-bottom: 2rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
             position: relative;
             display: inline-block;
         }
@@ -180,185 +178,217 @@
             bottom: -10px;
             left: 0;
             width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--secondary), transparent);
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
         }
         
-        /* Effet de révélation de texte */
-        .reveal-text {
+        /* Effet de révélation */
+        .reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
         
-        .reveal-text.visible {
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* Carte interactive */
-        .interactive-map {
-            width: 100%;
-            height: 500px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500"><rect width="800" height="500" fill="%231a1e24"/><path fill="none" stroke="%23c9a66b" stroke-width="2" d="M100 100h600v300H100z"/><path fill="%238c1515" d="M200 200l100-50 100 50 100-50 100 50 100-50" opacity="0.7"/></svg>');
-            position: relative;
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
             margin: 3rem 0;
-            border: 1px solid var(--secondary);
-            box-shadow: 0 0 30px rgba(201, 166, 107, 0.1);
         }
         
-        .map-marker {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: var(--accent);
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            aspect-ratio: 1/1;
+            border: 2px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Player */
+        .music-player {
+            background: rgba(0,56,168,0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            border: 1px solid var(--gold);
+            margin-top: 3rem;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .player-title {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .player-btn {
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            transform: translate(-50%, -50%);
+            background: var(--gold);
+            border: none;
+            color: var(--dark);
+            font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s;
-        }
-        
-        .map-marker::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: all 0.3s;
-        }
-        
-        .map-marker:hover {
-            transform: translate(-50%, -50%) scale(1.5);
-        }
-        
-        .map-marker:hover::after {
-            opacity: 0.3;
-            transform: translate(-50%, -50%) scale(1.8);
-        }
-        
-        /* Timeline holographique */
-        .timeline {
-            position: relative;
-            padding-left: 100px;
-            margin: 5rem 0;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--secondary), transparent);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 50px;
-        }
-        
-        .timeline-year {
-            position: absolute;
-            left: -25px;
-            top: 0;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border: 2px solid var(--secondary);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Imperial', serif;
-            color: var(--secondary);
-            box-shadow: 0 0 15px var(--glow);
         }
         
-        /* Effet de vieillissement du texte */
-        .aged-text {
+        .player-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--gold);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to bottom, var(--dark), #000);
+            text-align: center;
+            padding: 5rem 2rem;
             position: relative;
-            display: inline-block;
         }
         
-        .aged-text::after {
-            content: '';
+        .blessing {
+            font-family: 'Hebrew', serif;
+            font-size: 4rem;
+            color: var(--gold);
+            margin: 0;
+            text-shadow: 0 0 10px var(--gold);
+        }
+        
+        /* Effet d'étoiles */
+        .star {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="none" stroke="%23c9a66b" stroke-width="0.3" stroke-opacity="0.1" d="M0 0l100 100M100 0L0 100"/></svg>');
-            mix-blend-mode: multiply;
-            pointer-events: none;
+            background-color: var(--gold);
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="hologram"></div>
+    <div class="hanukkah-lights"></div>
+    <div class="menorah"></div>
+    
+    <!-- Création d'étoiles dynamiques -->
+    <script>
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            document.body.appendChild(star);
+        }
+    </script>
     
     <header>
-        <div class="imperial-seal"></div>
-        <div class="title-container">
-            <h1>ANTOINE GIBELIN</h1>
-            <div class="subtitle">L'Empereur qui façonna le destin de l'Europe</div>
+        <div class="logo-container">
+            <h1 class="logo">Antoine Jewbuzz</h1>
+            <p style="color: var(--gold); font-size: 1.5rem; margin-top: 1rem;">& Mazeltov</p>
         </div>
+        <div class="hebrew">מזל טוב</div>
     </header>
     
     <nav>
-        <a href="#biographie">Biographie</a>
-        <a href="#empire">L'Empire</a>
-        <a href="#heritage">Héritage</a>
-        <a href="#archives">Archives</a>
+        <a href="#about">À Propos</a>
+        <a href="#music">Musique</a>
+        <a href="#gallery">Galerie</a>
+        <a href="#contact">Contact</a>
     </nav>
     
-    <section id="biographie">
-        <h2 class="section-title aged-text">Biographie</h2>
-        <div class="reveal-text">
-            <p>Né en 1215 dans le château familial des Gibelin, Antoine montra dès son plus jeune âge des dispositions exceptionnelles pour le leadership et la stratégie. Son éducation, confiée aux meilleurs précepteurs du Saint-Empire, fit de lui un polyglotte accompli et un fin connaisseur des arts.</p>
+    <section id="about">
+        <h2 class="section-title">Notre Histoire</h2>
+        <div class="reveal">
+            <p>Antoine Jewbuzz & Mazeltov incarnent la fusion entre tradition juive et modernité. Leur musique, profondément enracinée dans la culture juive, explore de nouveaux horizons sonores avec une énergie révolutionnaire.</p>
             
-            <p>Son accession au trône en 1256 marqua un tournant dans l'histoire européenne. Contrairement à ses prédécesseurs, Gibelin comprit que la puissance impériale devait s'appuyer autant sur la culture que sur les armes.</p>
-        </div>
-        
-        <div class="interactive-map">
-            <div class="map-marker" style="top: 30%; left: 25%;" data-year="1215"></div>
-            <div class="map-marker" style="top: 45%; left: 50%;" data-year="1256"></div>
-            <div class="map-marker" style="top: 60%; left: 75%;" data-year="1289"></div>
+            <p>Leur rencontre légendaire lors d'un Sim'hat Torah à Jérusalem a donné naissance à un son unique qui résonne des synagogues aux clubs branchés de Tel-Aviv et New York.</p>
         </div>
     </section>
     
-    <section id="empire" style="background: rgba(26, 30, 36, 0.7);">
-        <h2 class="section-title aged-text">L'Empire Gibelin</h2>
-        <div class="reveal-text">
-            <p>Sous le règne d'Antoine Gibelin, l'Empire atteignit son apogée territorial et culturel. Il établit un système administratif innovant qui influença les monarchies européennes pour les siècles à venir.</p>
+    <section id="music">
+        <h2 class="section-title">Notre Musique</h2>
+        <div class="reveal">
+            <p>Découvrez "Klezmer Electrique", notre dernier album qui réinvente les mélodies traditionnelles avec des beats électroniques envoûtants.</p>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-year">1258</div>
-                    <p>Réforme du système judiciaire impérial, établissant les bases du droit moderne.</p>
+            <div class="music-player">
+                <div class="player-title">Hava Nagila 2.0 (Remix Electro)</div>
+                
+                <div style="height: 5px; background: rgba(255,255,255,0.2); border-radius: 5px; margin: 1.5rem 0;">
+                    <div style="width: 45%; height: 100%; background: var(--gold); border-radius: 5px;"></div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">1265</div>
-                    <p>Création de la première bibliothèque impériale ouverte aux érudits de toute l'Europe.</p>
+                
+                <div style="display: flex; justify-content: space-between; color: var(--gold); font-size: 0.9rem;">
+                    <span>2:18</span>
+                    <span>5:42</span>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">1272</div>
-                    <p>Signature du Concordat de Vienne, réconciliant temporairement l'Empire et la Papauté.</p>
+                
+                <div class="player-controls">
+                    <button class="player-btn">⏮</button>
+                    <button class="player-btn">▶</button>
+                    <button class="player-btn">⏭</button>
                 </div>
             </div>
         </div>
     </section>
     
+    <section id="gallery">
+        <h2 class="section-title">Galerie</h2>
+        <div class="reveal">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/600x600/?jewish,music" alt="Performance">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/600x600/?synagogue,celebration" alt="Concert">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/random/600x600/?violin,stage" alt="Musique">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <h2 class="blessing">L'Chaim!</h2>
+        <p style="color: var(--gold); margin-top: 2rem;">Pour toutes demandes de booking et collaborations</p>
+        <p style="color: var(--light);">contact@antoinejewbuzz.com • +1 234 567 890</p>
+    </footer>
+    
     <script>
-        // Effets de révélation au défilement
+        // Effet de révélation au défilement
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -367,34 +397,55 @@
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.reveal-text').forEach(el => {
+        document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
         
-        // Interaction avec la carte
-        document.querySelectorAll('.map-marker').forEach(marker => {
-            marker.addEventListener('click', function() {
-                const year = this.getAttribute('data-year');
-                alert(`Événement clé de ${year}: ${getEventDescription(year)}`);
-            });
-        });
-        
-        function getEventDescription(year) {
-            const events = {
-                '1215': 'Naissance d\'Antoine Gibelin dans le château familial',
-                '1256': 'Couronnement comme Empereur du Saint-Empire',
-                '1289': 'Mort d\'Antoine Gibelin à Innsbruck'
-            };
-            return events[year] || 'Événement important de cette période';
+        // Effet de flammes pour la Menorah
+        const menorah = document.querySelector('.menorah');
+        for (let i = 0; i < 9; i++) {
+            const flame = document.createElement('div');
+            flame.style.position = 'absolute';
+            flame.style.width = '10px';
+            flame.style.height = '15px';
+            flame.style.background = 'radial-gradient(circle, var(--gold) 30%, transparent 70%)';
+            flame.style.borderRadius = '50% 50% 20% 20%';
+            flame.style.filter = 'blur(1px)';
+            flame.style.animation = `flicker ${1 + Math.random()}s infinite alternate`;
+            
+            // Positionnement des flammes
+            if (i === 4) { // Shamash
+                flame.style.bottom = '100px';
+                flame.style.left = 'calc(50% - 5px)';
+                flame.style.height = '20px';
+                flame.style.width = '12px';
+            } else {
+                const positions = [
+                    {bottom: '100px', left: '15%'},
+                    {bottom: '80px', left: '22.5%'},
+                    {bottom: '100px', left: '30%'},
+                    {bottom: '60px', left: '37.5%'},
+                    {bottom: '100px', left: '70%'},
+                    {bottom: '40px', left: '62.5%'},
+                    {bottom: '100px', left: '55%'},
+                    {bottom: '20px', left: '77.5%'}
+                ];
+                flame.style.bottom = positions[i].bottom;
+                flame.style.left = positions[i].left;
+            }
+            
+            menorah.appendChild(flame);
         }
         
-        // Effet de particules pour le sceau
-        document.addEventListener('mousemove', (e) => {
-            const seal = document.querySelector('.imperial-seal');
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            seal.style.transform = `rotate(${x * 360}deg) translate(${x * 20}px, ${y * 20}px)`;
-        });
+        // Ajout de la keyframe pour les flammes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes flicker {
+                0%, 100% { opacity: 0.8; transform: scaleY(1); }
+                50% { opacity: 1; transform: scaleY(1.2); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
