@@ -1,451 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Antoine Jewbuzz & Mazeltov</title>
-    <style>
-        :root {
-            --gold: #FFD700;
-            --blue: #0038A8;
-            --burgundy: #800020;
-            --dark: #0A0A0A;
-            --light: #F5F5F5;
-        }
-        
-        @font-face {
-            font-family: 'Hebrew';
-            src: url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700&display=swap');
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Frank Ruhl Libre', serif;
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%230038A8" opacity="0.1" d="M50 0L100 50L50 100L0 50Z"/></svg>'),
-                linear-gradient(to bottom, var(--dark), #111);
-            background-size: 150px 150px, cover;
-        }
-        
-        /* Effet de lumières de Hanoucca */
-        .hanukkah-lights {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,215,0,0.15) 0%, transparent 25%),
-                radial-gradient(circle at 80% 70%, rgba(255,215,0,0.15) 0%, transparent 25%);
-            pointer-events: none;
-            z-index: -1;
-            animation: lightsFlicker 5s infinite alternate;
-        }
-        
-        @keyframes lightsFlicker {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-        
-        /* Menorah animée */
-        .menorah {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 200px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200"><path d="M150 200L140 100H160L150 200ZM50 100H250M75 80H100M125 60H150M175 40H200M225 20H250" stroke="%23FFD700" stroke-width="3" fill="none"/><circle cx="50" cy="100" r="5" fill="%23FFD700"/><circle cx="75" cy="80" r="5" fill="%23FFD700"/><circle cx="100" cy="100" r="5" fill="%23FFD700"/><circle cx="125" cy="60" r="5" fill="%23FFD700"/><circle cx="150" cy="100" r="5" fill="%23FFD700"/><circle cx="175" cy="40" r="5" fill="%23FFD700"/><circle cx="200" cy="100" r="5" fill="%23FFD700"/><circle cx="225" cy="20" r="5" fill="%23FFD700"/><circle cx="250" cy="100" r="5" fill="%23FFD700"/></svg>') no-repeat center;
-            z-index: -1;
-            filter: drop-shadow(0 0 10px rgba(255,215,0,0.7));
-        }
-        
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding: 0 20px;
-        }
-        
-        .logo-container {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .logo {
-            font-family: 'Hebrew', serif;
-            font-size: 5rem;
-            color: var(--gold);
-            text-shadow: 0 0 15px var(--gold);
-            margin: 0;
-            position: relative;
-            letter-spacing: 3px;
-        }
-        
-        .logo::before, .logo::after {
-            content: '✡';
-            position: absolute;
-            font-size: 3rem;
-            animation: float 3s ease-in-out infinite alternate;
-        }
-        
-        .logo::before {
-            left: -50px;
-            top: -20px;
-        }
-        
-        .logo::after {
-            right: -50px;
-            bottom: -20px;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-15px); }
-        }
-        
-        .hebrew {
-            font-family: 'Frank Ruhl Libre', serif;
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-top: 1rem;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 1rem;
-            z-index: 100;
-        }
-        
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.8rem 1.8rem;
-            border: 2px solid var(--gold);
-            border-radius: 50px;
-            background: rgba(0,56,168,0.3);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s;
-        }
-        
-        nav a:hover {
-            background: var(--gold);
-            color: var(--dark);
-            box-shadow: 0 0 20px var(--gold);
-        }
-        
-        /* Sections */
-        section {
-            min-height: 100vh;
-            padding: 100px 50px;
-            position: relative;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-        }
-        
-        .section-title {
-            font-family: 'Hebrew', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 3rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-        }
-        
-        /* Effet de révélation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
-        
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 5px;
-            aspect-ratio: 1/1;
-            border: 2px solid var(--gold);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        /* Player */
-        .music-player {
-            background: rgba(0,56,168,0.2);
-            border-radius: 10px;
-            padding: 2rem;
-            border: 1px solid var(--gold);
-            margin-top: 3rem;
-            max-width: 600px;
-            backdrop-filter: blur(5px);
-        }
-        
-        .player-title {
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-bottom: 1rem;
-        }
-        
-        .player-controls {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .player-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gold);
-            border: none;
-            color: var(--dark);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .player-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px var(--gold);
-        }
-        
-        /* Footer */
-        footer {
-            background: linear-gradient(to bottom, var(--dark), #000);
-            text-align: center;
-            padding: 5rem 2rem;
-            position: relative;
-        }
-        
-        .blessing {
-            font-family: 'Hebrew', serif;
-            font-size: 4rem;
-            color: var(--gold);
-            margin: 0;
-            text-shadow: 0 0 10px var(--gold);
-        }
-        
-        /* Effet d'étoiles */
-        .star {
-            position: absolute;
-            background-color: var(--gold);
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
-        }
-        
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Gibelin.exe</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    h1 {
+      color: lime;
+      font-size: 48px;
+      text-align: center;
+      margin-top: 20px;
+      animation: clignote 1s infinite alternate;
+    }
+
+    @keyframes clignote {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .face {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: url("https://i.imgur.com/1cX7BSp.png") no-repeat center/contain;
+      animation: bouge 10s linear infinite;
+    }
+
+    @keyframes bouge {
+      0% { top: 0; left: 0; }
+      25% { top: 0; left: 90%; }
+      50% { top: 90%; left: 90%; }
+      75% { top: 90%; left: 0; }
+      100% { top: 0; left: 0; }
+    }
+
+    .popup {
+      position: absolute;
+      width: 200px;
+      height: 100px;
+      background: pink;
+      border: 3px dashed red;
+      color: black;
+      font-weight: bold;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 0 20px red;
+    }
+  </style>
 </head>
 <body>
-    <div class="hanukkah-lights"></div>
-    <div class="menorah"></div>
-    
-    <!-- Création d'étoiles dynamiques -->
-    <script>
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 2}s`;
-            document.body.appendChild(star);
-        }
-    </script>
-    
-    <header>
-        <div class="logo-container">
-            <h1 class="logo">Antoine Jewbuzz</h1>
-            <p style="color: var(--gold); font-size: 1.5rem; margin-top: 1rem;">& Mazeltov</p>
-        </div>
-        <div class="hebrew">מזל טוב</div>
-    </header>
-    
-    <nav>
-        <a href="#about">À Propos</a>
-        <a href="#music">Musique</a>
-        <a href="#gallery">Galerie</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    
-    <section id="about">
-        <h2 class="section-title">Notre Histoire</h2>
-        <div class="reveal">
-            <p>Antoine Jewbuzz & Mazeltov incarnent la fusion entre tradition juive et modernité. Leur musique, profondément enracinée dans la culture juive, explore de nouveaux horizons sonores avec une énergie révolutionnaire.</p>
-            
-            <p>Leur rencontre légendaire lors d'un Sim'hat Torah à Jérusalem a donné naissance à un son unique qui résonne des synagogues aux clubs branchés de Tel-Aviv et New York.</p>
-        </div>
-    </section>
-    
-    <section id="music">
-        <h2 class="section-title">Notre Musique</h2>
-        <div class="reveal">
-            <p>Découvrez "Klezmer Electrique", notre dernier album qui réinvente les mélodies traditionnelles avec des beats électroniques envoûtants.</p>
-            
-            <div class="music-player">
-                <div class="player-title">Hava Nagila 2.0 (Remix Electro)</div>
-                
-                <div style="height: 5px; background: rgba(255,255,255,0.2); border-radius: 5px; margin: 1.5rem 0;">
-                    <div style="width: 45%; height: 100%; background: var(--gold); border-radius: 5px;"></div>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; color: var(--gold); font-size: 0.9rem;">
-                    <span>2:18</span>
-                    <span>5:42</span>
-                </div>
-                
-                <div class="player-controls">
-                    <button class="player-btn">⏮</button>
-                    <button class="player-btn">▶</button>
-                    <button class="player-btn">⏭</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="gallery">
-        <h2 class="section-title">Galerie</h2>
-        <div class="reveal">
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="https://source.unsplash.com/random/600x600/?jewish,music" alt="Performance">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://source.unsplash.com/random/600x600/?synagogue,celebration" alt="Concert">
-                </div>
-                <div class="gallery-item">
-                    <img src="https://source.unsplash.com/random/600x600/?violin,stage" alt="Musique">
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <footer id="contact">
-        <h2 class="blessing">L'Chaim!</h2>
-        <p style="color: var(--gold); margin-top: 2rem;">Pour toutes demandes de booking et collaborations</p>
-        <p style="color: var(--light);">contact@antoinejewbuzz.com • +1 234 567 890</p>
-    </footer>
-    
-    <script>
-        // Effet de révélation au défilement
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Effet de flammes pour la Menorah
-        const menorah = document.querySelector('.menorah');
-        for (let i = 0; i < 9; i++) {
-            const flame = document.createElement('div');
-            flame.style.position = 'absolute';
-            flame.style.width = '10px';
-            flame.style.height = '15px';
-            flame.style.background = 'radial-gradient(circle, var(--gold) 30%, transparent 70%)';
-            flame.style.borderRadius = '50% 50% 20% 20%';
-            flame.style.filter = 'blur(1px)';
-            flame.style.animation = `flicker ${1 + Math.random()}s infinite alternate`;
-            
-            // Positionnement des flammes
-            if (i === 4) { // Shamash
-                flame.style.bottom = '100px';
-                flame.style.left = 'calc(50% - 5px)';
-                flame.style.height = '20px';
-                flame.style.width = '12px';
-            } else {
-                const positions = [
-                    {bottom: '100px', left: '15%'},
-                    {bottom: '80px', left: '22.5%'},
-                    {bottom: '100px', left: '30%'},
-                    {bottom: '60px', left: '37.5%'},
-                    {bottom: '100px', left: '70%'},
-                    {bottom: '40px', left: '62.5%'},
-                    {bottom: '100px', left: '55%'},
-                    {bottom: '20px', left: '77.5%'}
-                ];
-                flame.style.bottom = positions[i].bottom;
-                flame.style.left = positions[i].left;
-            }
-            
-            menorah.appendChild(flame);
-        }
-        
-        // Ajout de la keyframe pour les flammes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes flicker {
-                0%, 100% { opacity: 0.8; transform: scaleY(1); }
-                50% { opacity: 1; transform: scaleY(1.2); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+
+<h1>GIBELIN EST UN GÉNIE !</h1>
+<div class="face"></div>
+
+<script>
+  function popup() {
+    const p = document.createElement("div");
+    p.className = "popup";
+    p.innerText = "HAHAHA GIBELIN.exe \n est dans ton PC 😈";
+    p.style.top = Math.random() * window.innerHeight + "px";
+    p.style.left = Math.random() * window.innerWidth + "px";
+    document.body.appendChild(p);
+    setTimeout(() => {
+      if (document.body.contains(p)) document.body.removeChild(p);
+    }, 3000);
+  }
+
+  setInterval(popup, 800);
+  setTimeout(() => {
+    alert("Tu croyais pouvoir m’arrêter ?!");
+  }, 5000);
+</script>
+
 </body>
 </html>
