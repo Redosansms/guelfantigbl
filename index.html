@@ -1,82 +1,375 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Gibelin.exe</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: black;
-      overflow: hidden;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-    }
-
-    h1 {
-      color: lime;
-      font-size: 48px;
-      text-align: center;
-      margin-top: 20px;
-      animation: clignote 1s infinite alternate;
-    }
-
-    @keyframes clignote {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
-    .face {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background: url("drapaux.png") no-repeat center/contain;
-      animation: bouge 10s linear infinite;
-    }
-
-    @keyframes bouge {
-      0% { top: 0; left: 0; }
-      25% { top: 0; left: 90%; }
-      50% { top: 90%; left: 90%; }
-      75% { top: 90%; left: 0; }
-      100% { top: 0; left: 0; }
-    }
-
-    .popup {
-      position: absolute;
-      width: 200px;
-      height: 100px;
-      background: pink;
-      border: 3px dashed red;
-      color: black;
-      font-weight: bold;
-      text-align: center;
-      padding: 20px;
-      box-shadow: 0 0 20px red;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fête des Mères - Théo pour Marie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: #fff5f7;
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .main-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            margin-bottom: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            color: #e91e63;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header h2 {
+            font-size: 1.5rem;
+            color: #ff4081;
+            font-weight: normal;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.2);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .main-image {
+            max-width: 100%;
+            border-radius: 10px;
+            border: 5px solid #ffebee;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            max-height: 300px;
+            object-fit: contain;
+        }
+        
+        .signature {
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #e91e63;
+            margin-top: 2rem;
+            text-align: right;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #e91e63, #ff4081);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.6);
+        }
+        
+        /* Pluie d'images */
+        .falling-image {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 0;
+            pointer-events: none;
+            animation: falling linear infinite;
+        }
+        
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(calc(100vh + 100px)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Cœurs flottants */
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4081;
+            animation: float 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(180deg);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+            
+            .falling-image {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="main-section">
+        <div class="header">
+            <h1>Bonne Fête des Mères !</h1>
+            <h2></h2>
+        </div>
+        
+        <div class="card">
+            <div class="message">
+                <p>Chère Maman,</p>
+                <p>En ce jour spécial, je voulais te créer quelque chose d'unique se site web est de ma part a moi et de soso.</p>
+                <p>Tu es la meilleure maman je t'aime et je veux t'acompagner dans tes projets de poterie c'est sa mon cadeau.</p>
+                <p></p>
+            </div>
+            
+            <div>
+                <img src="soso.png" alt="Photo de soso" class="main-image" id="mainImage">
+            </div>
+            
+            <button class="btn" id="surpriseBtn">Clique ici !</button>
+            
+            <div class="signature">
+                <p>Bonne fete ,</p>
+                <p>Théo</p>
+            </div>
+        </div>
+    </div>
 
-<h1>GIBELIN EST UN GÉNIE !</h1>
-<div class="face"></div>
-
-<script>
-  function popup() {
-    const p = document.createElement("div");
-    p.className = "popup";
-    p.innerText = "HAHAHA GIBELIN.exe \n est dans ton PC 😈";
-    p.style.top = Math.random() * window.innerHeight + "px";
-    p.style.left = Math.random() * window.innerWidth + "px";
-    document.body.appendChild(p);
-    setTimeout(() => {
-      if (document.body.contains(p)) document.body.removeChild(p);
-    }, 3000);
-  }
-
-  setInterval(popup, 800);
-  setTimeout(() => {
-    alert("Tu croyais pouvoir m’arrêter ?!");
-  }, 5000);
-</script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btn = document.getElementById('surpriseBtn');
+            const mainImage = document.getElementById('mainImage');
+            
+            // Créer la pluie d'images
+            function createImageRain() {
+                const imageCount = 30;
+                for (let i = 0; i < imageCount; i++) {
+                    setTimeout(() => {
+                        const img = document.createElement('div');
+                        img.className = 'falling-image';
+                        img.style.backgroundImage = 'url(soso.png)';
+                        
+                        // Position aléatoire
+                        const left = Math.random() * window.innerWidth;
+                        const animationDuration = Math.random() * 5 + 5;
+                        const delay = Math.random() * 5;
+                        const size = Math.random() * 30 + 20;
+                        
+                        img.style.left = `${left}px`;
+                        img.style.width = `${size}px`;
+                        img.style.height = `${size}px`;
+                        img.style.animationDuration = `${animationDuration}s`;
+                        img.style.animationDelay = `${delay}s`;
+                        
+                        document.body.appendChild(img);
+                        
+                        // Supprimer après l'animation
+                        setTimeout(() => {
+                            img.remove();
+                        }, (animationDuration + delay) * 1000);
+                    }, i * 300);
+                }
+            }
+            
+            // Créer des cœurs flottants
+            function createFloatingHearts(count) {
+                for (let i = 0; i < count; i++) {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = '❤️';
+                    heart.className = 'floating-heart';
+                    
+                    const size = Math.random() * 30 + 20;
+                    const left = Math.random() * window.innerWidth;
+                    const top = Math.random() * window.innerHeight;
+                    const duration = Math.random() * 4 + 4;
+                    const delay = Math.random() * 2;
+                    
+                    heart.style.left = `${left}px`;
+                    heart.style.top = `${top}px`;
+                    heart.style.fontSize = `${size}px`;
+                    heart.style.animationDuration = `${duration}s`;
+                    heart.style.animationDelay = `${delay}s`;
+                    
+                    document.body.appendChild(heart);
+                    
+                    // Supprimer après un certain temps
+                    setTimeout(() => {
+                        heart.remove();
+                    }, (duration + delay) * 1000);
+                }
+            }
+            
+            // Démarrer la pluie d'images
+            createImageRain();
+            setInterval(createImageRain, 8000);
+            
+            // Démarrer les cœurs flottants
+            setInterval(() => createFloatingHearts(3), 2000);
+            
+            // Surprise quand on clique sur le bouton
+            btn.addEventListener('click', function() {
+                // Animation de l'image principale
+                mainImage.style.transform = 'scale(1.1) rotate(5deg)';
+                setTimeout(() => {
+                    mainImage.style.transform = 'scale(1) rotate(0)';
+                }, 500);
+                
+                // Créer une explosion d'images
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        const img = document.createElement('img');
+                        img.src = 'soso.png';
+                        img.style.position = 'absolute';
+                        img.style.width = '40px';
+                        img.style.height = '40px';
+                        img.style.left = `${window.innerWidth/2}px`;
+                        img.style.top = `${window.innerHeight/2}px`;
+                        img.style.zIndex = '1000';
+                        img.style.pointerEvents = 'none';
+                        
+                        // Animation d'explosion
+                        const angle = Math.random() * Math.PI * 2;
+                        const velocity = Math.random() * 5 + 5;
+                        const x = Math.cos(angle) * velocity;
+                        const y = Math.sin(angle) * velocity;
+                        
+                        document.body.appendChild(img);
+                        
+                        let posX = window.innerWidth/2;
+                        let posY = window.innerHeight/2;
+                        let opacity = 1;
+                        
+                        const move = setInterval(() => {
+                            posX += x;
+                            posY += y;
+                            opacity -= 0.02;
+                            
+                            img.style.left = `${posX}px`;
+                            img.style.top = `${posY}px`;
+                            img.style.opacity = opacity;
+                            
+                            if (opacity <= 0) {
+                                clearInterval(move);
+                                img.remove();
+                            }
+                        }, 30);
+                    }, i * 50);
+                }
+                
+                // Message spécial
+                alert("Bonne fete maman - Théo");
+            });
+            
+            // Faire tomber une image quand on clique n'importe où
+            document.addEventListener('click', function(e) {
+                if (e.target !== btn) {
+                    const img = document.createElement('img');
+                    img.src = 'soso.png';
+                    img.style.position = 'absolute';
+                    img.style.width = '60px';
+                    img.style.height = '60px';
+                    img.style.left = `${e.clientX - 30}px`;
+                    img.style.top = `${e.clientY - 30}px`;
+                    img.style.zIndex = '1000';
+                    img.style.pointerEvents = 'none';
+                    img.style.borderRadius = '50%';
+                    img.style.boxShadow = '0 0 10px pink';
+                    
+                    document.body.appendChild(img);
+                    
+                    // Animation de chute
+                    let posY = e.clientY - 30;
+                    const fall = setInterval(() => {
+                        posY += 5;
+                        img.style.top = `${posY}px`;
+                        
+                        if (posY > window.innerHeight) {
+                            clearInterval(fall);
+                            img.remove();
+                        }
+                    }, 30);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
